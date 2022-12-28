@@ -2,13 +2,14 @@
   "name": "men-challenge",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "clear": "rm -rf dist",
     "babel-transpile": "babel . -d dist --ignore node_modules --copy-files --no-copy-ignored --include-dotfiles",
     "install-dist-packages": "cd dist && rm -rf node_modules && npm install && cd ..",
     "build": "npm run clear && npm run babel-transpile && npm run install-dist-packages",
-    "start": "node dist/app.js",
-    "dev": "nodemon --no-warnings --exec babel-node ./app.js",
+    "start": "node --experimental-modules --es-module-specifier-resolution=node app.js",
+    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node app.js",
     "test": "env-cmd -f ./.env.test mocha --recursive --no-warnings --require @babel/register --exit"
   },
   "dependencies": {
