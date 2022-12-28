@@ -1,6 +1,6 @@
 import { check } from 'express-validator';
-import { ID_INVALID } from '../../../constants/errorCodes';
+import errorCodes from '../../../constants/errorCodes';
 
-const validateId = check('id', ID_INVALID).isString();
+const validateId = check('id', errorCodes.ID_INVALID).isString();
 
 export default validateId;
