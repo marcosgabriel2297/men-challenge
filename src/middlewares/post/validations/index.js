@@ -3,6 +3,8 @@ import validateBody from './validateBody';
 import validateAuthorExists from './validateAuthorExists';
 import validateId from './validateId';
 import validateThatAuthorIsLoggedIn from './validateThatAuthorIsLoggedIn';
+import validateContentOfComment from './validateContentOfComment';
+import validatePostExists from './validatePostExists';
 
 export default {
   validateTitle,
@@ -10,4 +12,6 @@ export default {
   validateAuthorExists,
   validateId,
   validateThatAuthorIsLoggedIn,
+  validateContentOfComment,
+  validatePostExists,
 };

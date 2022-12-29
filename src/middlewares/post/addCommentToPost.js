@@ -1,9 +1,17 @@
-// import postService from '../../services/postService';
+import postService from '../../services/postService';
 
 const addComentToPost = async (req, res, next) => {
+  const { author, content } = req.body;
+
+  const { id } = req.params;
+
   try {
-    // const user = await postService.create(req.body);
-    res.status(200).send('Todo ok!');
+    await postService.addCommentToPost(id, {
+      author,
+      content,
+    });
+
+    res.status(200).send({ idPost: id, authorOfComment: author, content });
     return next();
   } catch (err) {
     return next(err);
