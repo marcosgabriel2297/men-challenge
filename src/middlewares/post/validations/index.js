@@ -5,6 +5,7 @@ import validateId from './validateId';
 import validateThatAuthorIsLoggedIn from './validateThatAuthorIsLoggedIn';
 import validateContentOfComment from './validateContentOfComment';
 import validatePostExists from './validatePostExists';
+import validateKeyword from './validateKeyword';
 
 export default {
   validateTitle,
@@ -14,4 +15,5 @@ export default {
   validateThatAuthorIsLoggedIn,
   validateContentOfComment,
   validatePostExists,
+  validateKeyword,
 };

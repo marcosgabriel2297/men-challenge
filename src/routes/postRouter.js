@@ -12,6 +12,7 @@ const {
   validateThatAuthorIsLoggedIn,
   validateContentOfComment,
   validatePostExists,
+  validateKeyword,
 } = postValidations;
 
 const { validateBody, validateParams } = commonValidations;
@@ -31,6 +32,7 @@ const createPostValidations = [
   validatePostBody,
   validateAuthorExists,
   validateThatAuthorIsLoggedIn,
+  validateKeyword,
 ];
 
 const createCommentValidations = [
@@ -42,6 +44,8 @@ const createPostMiddleware = validateBody(createPostValidations);
 const getPostByAuthorMiddleware = validateParams(validateAuthorExists);
 const createCommentMiddleware = validateBody(createCommentValidations);
 const existPostMiddleware = validateParams(validatePostExists);
+const getPostByKeywordMiddleware = validateParams(validateKeyword);
+
 postRouter.post('/', isAuthorized, createPostMiddleware, createPost);
 
 postRouter.post(
@@ -63,6 +67,11 @@ postRouter.get(
   findPostByAuthor,
 );
 
-postRouter.get('/keyword/:keyword', findPostByKeyword);
+postRouter.get(
+  '/keyword/:keyword',
+  isAuthorized,
+  getPostByKeywordMiddleware,
+  findPostByKeyword,
+);
 
 export default postRouter;

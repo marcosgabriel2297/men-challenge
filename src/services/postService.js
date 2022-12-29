@@ -16,9 +16,15 @@ const addCommentToPost = (idPost, comment) =>
   // eslint-disable-next-line implicit-arrow-linebreak
   Post.updateOne({ _id: idPost }, { $push: { comments: comment } });
 
+const filterKeyword = (prop, keyword) => ({
+  [prop]: { $regex: keyword, $options: 'i' },
+});
+
 const findByKeyword = (keyword) =>
   // eslint-disable-next-line implicit-arrow-linebreak
-  Post.find({ $or: [{ title: `/${keyword}/i` }, { body: `/${keyword}/i` }] });
+  Post.find({
+    $or: [filterKeyword('title', keyword), filterKeyword('body', keyword)],
+  });
 
 const postService = {
   create,
