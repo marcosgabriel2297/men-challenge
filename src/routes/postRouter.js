@@ -9,6 +9,7 @@ const {
   validateBody: validatePostBody,
   validateAuthorExists,
   validateId,
+  validateThatAuthorIsLoggedIn,
 } = postValidations;
 
 const { validateBody } = commonValidations;
@@ -20,6 +21,7 @@ const createPostValidations = [
   validateTitle,
   validatePostBody,
   validateAuthorExists,
+  validateThatAuthorIsLoggedIn,
 ];
 
 const createPostMiddleware = validateBody(createPostValidations);
