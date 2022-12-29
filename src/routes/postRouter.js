@@ -10,6 +10,8 @@ const {
   validateAuthorExists,
   validateId,
   validateThatAuthorIsLoggedIn,
+  validateContentOfComment,
+  validatePostExists,
 } = postValidations;
 
 const { validateBody, validateParams } = commonValidations;
@@ -30,11 +32,24 @@ const createPostValidations = [
   validateThatAuthorIsLoggedIn,
 ];
 
+const createCommentValidations = [
+  validateAuthorExists,
+  validateContentOfComment,
+];
+
 const createPostMiddleware = validateBody(createPostValidations);
 const getPostByAuthorMiddleware = validateParams(validateAuthorExists);
+const createCommentMiddleware = validateBody(createCommentValidations);
+const existPostMiddleware = validateParams(validatePostExists);
 postRouter.post('/', isAuthorized, createPostMiddleware, createPost);
 
-postRouter.post('/add-comment/:id', addCommentToPost);
+postRouter.post(
+  '/add-comment/:id',
+  isAuthorized,
+  existPostMiddleware,
+  createCommentMiddleware,
+  addCommentToPost,
+);
 
 postRouter.get('/', isAuthorized, findAllPosts);
 
