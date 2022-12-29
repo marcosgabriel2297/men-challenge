@@ -16,12 +16,17 @@ const addCommentToPost = (idPost, comment) =>
   // eslint-disable-next-line implicit-arrow-linebreak
   Post.updateOne({ _id: idPost }, { $push: { comments: comment } });
 
+const findByKeyword = (keyword) =>
+  // eslint-disable-next-line implicit-arrow-linebreak
+  Post.find({ $or: [{ title: `/${keyword}/i` }, { body: `/${keyword}/i` }] });
+
 const postService = {
   create,
   findAll,
   findById,
   findByAuthor,
   addCommentToPost,
+  findByKeyword,
 };
 
 export default postService;
