@@ -18,6 +18,7 @@ const {
   findAllPosts,
   findPostById,
   findPostByAuthor,
+  addCommentToPost,
 } = postMiddlewares;
 
 const postRouter = express.Router();
@@ -32,6 +33,8 @@ const createPostValidations = [
 const createPostMiddleware = validateBody(createPostValidations);
 const getPostByAuthorMiddleware = validateParams(validateAuthorExists);
 postRouter.post('/', isAuthorized, createPostMiddleware, createPost);
+
+postRouter.post('/add-comment/:id', addCommentToPost);
 
 postRouter.get('/', isAuthorized, findAllPosts);
 
