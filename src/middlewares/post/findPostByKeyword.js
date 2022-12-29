@@ -1,13 +1,13 @@
 import errorCodes from '../../constants/errorCodes';
 import postService from '../../services/postService';
 
-const { POST_AUTHOR_NOT_FOUND } = errorCodes;
+const { POST_NOT_EXISTS } = errorCodes;
 
-const findPostByAuthor = async (req, res, next) => {
+const findPostByKeyword = async (req, res, next) => {
   try {
-    const posts = await postService.findByAuthor(req.params.author);
+    const posts = await postService.findByKeyword(req.params.keyword);
     if (!posts.length) {
-      res.status(404).send({ message: POST_AUTHOR_NOT_FOUND });
+      res.status(404).send({ message: POST_NOT_EXISTS });
       return next();
     }
     res.status(200).send(posts);
@@ -17,4 +17,4 @@ const findPostByAuthor = async (req, res, next) => {
   }
 };
 
-export default findPostByAuthor;
+export default findPostByKeyword;

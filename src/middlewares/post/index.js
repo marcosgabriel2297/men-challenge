@@ -3,6 +3,7 @@ import findAllPosts from './findAllPosts';
 import findPostById from './findPostById';
 import findPostByAuthor from './findPostByAuthor';
 import addCommentToPost from './addCommentToPost';
+import findPostByKeyword from './findPostByKeyword';
 
 export default {
   createPost,
@@ -10,4 +11,5 @@ export default {
   findPostById,
   findPostByAuthor,
   addCommentToPost,
+  findPostByKeyword,
 };

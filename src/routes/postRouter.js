@@ -21,6 +21,7 @@ const {
   findPostById,
   findPostByAuthor,
   addCommentToPost,
+  findPostByKeyword,
 } = postMiddlewares;
 
 const postRouter = express.Router();
@@ -61,5 +62,7 @@ postRouter.get(
   getPostByAuthorMiddleware,
   findPostByAuthor,
 );
+
+postRouter.get('/keyword/:keyword', findPostByKeyword);
 
 export default postRouter;
