@@ -63,7 +63,7 @@ describe('Post Controller', () => {
       }
     });
 
-    it.only('Should return post by id successfully', async () => {
+    it('Should return post by id successfully', async () => {
       const post = await instance.get(
         `${POSTS}/${existingPost._id}`,
         buildAuthorizationHeader(existingUserToken),

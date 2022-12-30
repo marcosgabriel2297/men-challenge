@@ -40,6 +40,12 @@ export const generatePostWithInvalidBody = (data) => ({
 
 export const generatePost = (data) => Post.create(generatePostData(data));
 
+export const generateComment = (data = {}) => ({
+  author: mongoose.Types.ObjectId(),
+  content: faker.lorem.words(6),
+  ...data,
+});
+
 const postFactory = {
   generatePostData,
   generatePost,
