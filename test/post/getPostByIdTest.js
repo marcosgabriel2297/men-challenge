@@ -68,7 +68,6 @@ describe('Post Controller', () => {
         `${POSTS}/${existingPost._id}`,
         buildAuthorizationHeader(existingUserToken),
       );
-      console.log('🚀 ~ file: getPostByIdTest.js:71 ~ it.only ~ post', post);
       assert.equal(post.status, 200);
       assert.equal(post.data._id, existingPost._id);
       assert.equal(post.data.title, existingPost.title);
