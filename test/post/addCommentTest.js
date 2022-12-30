@@ -57,7 +57,7 @@ describe('Post Controller', () => {
       }
     });
 
-    it('Should return not found as post does not exist', async () => {
+    it('Should return bad request as post does not exist', async () => {
       try {
         await instance.post(
           path(mongoose.Types.ObjectId()),
