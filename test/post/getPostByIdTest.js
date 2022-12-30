@@ -63,11 +63,12 @@ describe('Post Controller', () => {
       }
     });
 
-    it('Should return post by id successfully', async () => {
+    it.only('Should return post by id successfully', async () => {
       const post = await instance.get(
         `${POSTS}/${existingPost._id}`,
         buildAuthorizationHeader(existingUserToken),
       );
+      console.log('🚀 ~ file: getPostByIdTest.js:71 ~ it.only ~ post', post);
       assert.equal(post.status, 200);
       assert.equal(post.data._id, existingPost._id);
       assert.equal(post.data.title, existingPost.title);

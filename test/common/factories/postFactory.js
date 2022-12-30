@@ -1,4 +1,5 @@
 import faker from 'faker';
+import mongoose from 'mongoose';
 import Post, {
   MAX_TITLE_LENGTH,
   MAX_BODY_LENGTH,
@@ -7,6 +8,13 @@ import Post, {
 export const generatePostData = (data) => ({
   title: faker.lorem.words(1),
   body: faker.lorem.words(5),
+  comments: [
+    {
+      _id: mongoose.Types.ObjectId(),
+      author: mongoose.Types.ObjectId(),
+      content: faker.lorem.words(6),
+    },
+  ],
   ...data,
 });
 
