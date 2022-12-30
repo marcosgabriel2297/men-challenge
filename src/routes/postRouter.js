@@ -32,7 +32,6 @@ const createPostValidations = [
   validatePostBody,
   validateAuthorExists,
   validateThatAuthorIsLoggedIn,
-  validateKeyword,
 ];
 
 const createCommentValidations = [

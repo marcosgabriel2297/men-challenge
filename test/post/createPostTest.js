@@ -35,7 +35,7 @@ const { assert } = chai;
 const {
   POST_TITLE_INVALID_LENGTH,
   POST_BODY_INVALID_LENGTH,
-  USER_NOT_EXISTS,
+  POST_USER_LOGGEDIN_DIFFERENT_FROM_THE_AUTHOR,
 } = errorCodes;
 
 let existingUser;
@@ -168,7 +168,6 @@ describe('Post Controller', () => {
     it('Should return bad request as author does not exist', async () => {
       try {
         const post = generatePostData({ author: mongoose.Types.ObjectId() });
-
         await instance.post(
           POSTS,
           post,
@@ -180,7 +179,10 @@ describe('Post Controller', () => {
         assert.isNotEmpty(err.response.data.errors);
         assertHasFieldErrors(err, AUTHOR_FIELD_NAME);
         const invalidAuthorErr = err.response.data.errors.shift();
-        assert.equal(invalidAuthorErr.msg, USER_NOT_EXISTS);
+        assert.equal(
+          invalidAuthorErr.msg,
+          POST_USER_LOGGEDIN_DIFFERENT_FROM_THE_AUTHOR,
+        );
       }
     });
     it('Should create a new post successfully', async () => {
